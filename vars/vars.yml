@@ -1,22 +1,22 @@
 ---
 # AWS
 instance_name: JENKINS
-host_name: jenkins.tldev2.com
+host_name:
 termination_protection: yes
 aws_profile: "{{ awscli_profile }}"
-key_pair: AWS_List
+key_pair:
 operating_system: Ubuntu 18.04 LTS
 ami_id: ami-0a313d6098716f372
 region: us-east-1
 ec2_volume_size: 50
 type: t3.medium
 subnet_id: subnet-2d341a07
-group: JENKINS
+group:
 count: 1
 
 # OS
 username: deploy
-awscli_profile: winmo
+awscli_profile: default
 
 # Jenkins
 jenkins_hostname: localhost
