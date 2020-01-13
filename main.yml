@@ -1,0 +1,42 @@
+---
+- name: Configure EC2 instance
+  hosts: local
+  connection: local
+  gather_facts: false
+
+  vars_files:
+    - vars/vars.yml
+
+  tasks:
+    - name: Create EC2 instance
+      import_tasks: tasks/ec2_create.yml
+
+- name: Provision EC2 instance
+  hosts: web
+  remote_user: ubuntu
+  become: true
+  gather_facts: true
+
+  vars_files:
+    - vars/vars.yml
+
+  pre_tasks:
+    - import_tasks: tasks/update.yml
+    - import_tasks: tasks/user.yml
+    - import_tasks: tasks/ssh.yml
+    - import_tasks: tasks/packages.yml
+    - import_tasks: tasks/configs.yml
+    - import_tasks: tasks/motd.yml
+    - import_tasks: tasks/java.yml
+    - import_tasks: tasks/docker.yml
+
+  roles:
+    - role: geerlingguy.jenkins
+
+  tasks:
+    - import_tasks: tasks/harden.yml
+    - import_tasks: tasks/restart.yml
+      tags: restart
+
+#Command:
+#ansible-playbook --vault-password-file=~/devops/winmo/vault_pass/ansible_vault_pass.yml -i hosts --key-file "~/devops/winmo/key_pairs/AWS_List.pem" main.yml

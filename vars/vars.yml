@@ -1,0 +1,28 @@
+---
+# AWS
+instance_name: JENKINS
+host_name: jenkins.tldev2.com
+termination_protection: yes
+aws_profile: "{{ awscli_profile }}"
+key_pair: AWS_List
+operating_system: Ubuntu 18.04 LTS
+ami_id: ami-0a313d6098716f372
+region: us-east-1
+ec2_volume_size: 50
+type: t3.medium
+subnet_id: subnet-2d341a07
+group: JENKINS
+count: 1
+
+# OS
+username: deploy
+awscli_profile: winmo
+
+# Jenkins
+jenkins_hostname: localhost
+jenkins_http_port: 8080
+jenkins_admin_username: admin
+jenkins_admin_password: admin
+# jenkins_plugins: []
+# jenkins_plugins_install_dependencies: true
+# jenkins_plugins_state: present
