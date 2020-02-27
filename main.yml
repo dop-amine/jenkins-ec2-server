@@ -37,6 +37,3 @@
     - import_tasks: tasks/harden.yml
     - import_tasks: tasks/restart.yml
       tags: restart
-
-#Command:
-#ansible-playbook --vault-password-file=~/devops/winmo/vault_pass/ansible_vault_pass.yml -i hosts --key-file "~/devops/winmo/key_pairs/AWS_List.pem" main.yml
